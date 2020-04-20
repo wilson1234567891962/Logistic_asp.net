@@ -11,7 +11,7 @@ namespace WebApplication1
 {
     public partial class index : System.Web.UI.Page
     {
-        string connectionString = "Data Source=DESKTOP-3EOJTAA;Initial Catalog=Logistics;User ID=lizeth;Password=123456789";
+        string connectionString = "Data Source=; Initial Catalog=; User ID=;Password=";
         protected void Page_Load(object sender, EventArgs e)
         {
             using (SqlConnection sqlCon = new SqlConnection(connectionString))
@@ -51,6 +51,7 @@ namespace WebApplication1
                 data.DataSource = dtbl;
                 data.DataBind();
             }
+
         }
 
         protected void deleteRegister(object sender, EventArgs e)
@@ -97,6 +98,16 @@ namespace WebApplication1
                 data.DataSource = dtbl;
                 data.DataBind();
             }
+        }
+
+        private Boolean checkIsNotEmpty(Boolean item)
+        {
+            return item;
+        }
+
+        private Boolean checkIsNumber(Boolean item)
+        {
+            return item;
         }
     }
 }

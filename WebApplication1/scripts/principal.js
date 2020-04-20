@@ -1,37 +1,32 @@
-function applyStyle(item, itemOne, itemTwo, itemThree) {
+function applyStyle(item, itemOne, itemTwo) {
 
     var element = document.getElementById(item);
     element.classList.add("active");
-    resetStyles(itemOne, itemTwo, itemThree)
+    resetStyles(itemOne, itemTwo)
 }
 
-function hideOrShowContainer(item, itemOne, itemTwo, itemThree) {
+function hideOrShowContainer(item, itemOne, itemTwo) {
 
     var container = document.getElementById(item);
     container.classList.remove("hide");
     container.classList.add("show");
-    hideItem(itemOne, itemTwo, itemThree)
+    hideItem(itemOne, itemTwo)
 }
 
-function hideItem(itemOne, itemTwo, itemThree) {
+function hideItem(itemOne, itemTwo) {
     var one = document.getElementById(itemOne);
     var two = document.getElementById(itemTwo);
-    var three = document.getElementById(itemThree);
     one.classList.remove("show");
     two.classList.remove("show");
-    three.classList.remove("show");
     one.classList.add("hide");
     two.classList.add("hide");
-    three.classList.add("hide");
 }
 
-function resetStyles(itemOne, itemTwo, itemThree) {
+function resetStyles(itemOne, itemTwo) {
     var one = document.getElementById(itemOne);
     var two = document.getElementById(itemTwo);
-    var three = document.getElementById(itemThree);
     one.classList.remove("active");
     two.classList.remove("active");
-    three.classList.remove("active");
 }
 
 function showPopUp() {
@@ -109,4 +104,56 @@ function resetFields() {
     surname.value = "";
     age.value = "";
     occupation.value = "";
+}
+
+function disabledButton(id) {
+    document.getElementById(id).disabled = true;
+    document.getElementById(id).classList.remove("btn-disabled");
+    document.getElementById(id).classList.add("btn-disabled");
+}
+
+function enabledButton(id) {
+    document.getElementById(id).disabled = false;
+    document.getElementById(id).classList.remove("btn-disabled");
+}
+
+function checkItem() {
+    var id = document.getElementById('ID_EMPLOYMENT');
+    var name = document.getElementById('NAME_EMPLOYMENT');
+    var surName = document.getElementById('SURNAME_EMPLOYMENT');
+    var age = document.getElementById('AGE_EMPLOYMENT');
+    var occupation = document.getElementById('OCCUPATION_EMPLOYMENT');
+
+    if (document.getElementById('UPDATE_REGISTER').classList.contains('show')) {
+        if (isNotEmpty(id.value, 999999999999) && isNotEmpty(name.value, name.maxLength) && isNotEmpty(surName.value, surName.maxLength)
+            && isNotEmpty(age.value, 100) && isNotEmpty(occupation.value, occupation.maxLength)) {
+            enabledButton('btnUpdate');
+        } else {
+            disabledButton('btnUpdate')
+        }
+        return;
+    }
+
+    if (document.getElementById('INSERTE_REGISTER').classList.contains('show')) {
+        if (isNotEmpty(name.value, name.maxLength) && isNotEmpty(surName.value, surName.maxLength)
+            && isNotEmpty(age.value, 100) && isNotEmpty(occupation.value, occupation.maxLength)) {
+            enabledButton('btnInsert');
+        } else {
+            disabledButton('btnInsert')
+        }
+        return;
+    }
+
+    if (document.getElementById('DELETE_REGISTER').classList.contains('show')) {
+        if (isNotEmpty(id.value, 999999999999)) {
+            enabledButton('btnDelete');
+        } else {
+            disabledButton('btnDelete')
+        }
+        return;
+    }
+}
+
+function isNotEmpty(id, size) {
+    return (id !== '' && id.length <= size);
 }

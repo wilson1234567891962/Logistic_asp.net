@@ -19,7 +19,13 @@
   font-size: 25px;
   font-weight: bold;
 }
- 
+
+.image {
+    width: 200px;
+    height: 120px;
+    padding-left: 24px;
+}
+
 .header a:hover {
   background-color: #ddd;
   color: black;
@@ -155,6 +161,11 @@ tbody {
     border-color: #007bff;
 }
 
+.btn-disabled {
+  opacity: 0.65; 
+  cursor: not-allowed;
+}
+
 .btn:not(:disabled):not(.disabled) {
     cursor: pointer;
 }
@@ -177,9 +188,39 @@ tbody {
     transition: color .15s ease-in-out,background-color .15s ease-in-out,border-color .15s ease-in-out,box-shadow .15s ease-in-out;
 }
 
+.title-about.title-about {
+   width: 100%;
+   text-align: center;
+   padding-top: 16px;
+   color: #d40511;
+   padding-bottom: 32px;
+   padding-top: 24px;
+}
+
+.logo-about.logo-about {
+    width: calc(100% - 80px);
+    text-align: center;
+    padding-bottom: 60px;
+    padding-top: 24px;
+    padding-left: 32px;
+}
+
+.subtitle-about.subtitle-about {
+   width: 100%;
+   text-align: center;
+   padding-top: 16px;
+   color: #202328;
+    font-size: 22px;
+    font-family: 'montserrat_regular',sans-serif;
+    text-align: center;
+    display: block;
+    margin: 0 0 50px;
+}
+
 .container-options{
     width: 100%;
     text-align: center;
+    padding-bottom:38px;
 }
 
 
@@ -258,3 +299,4 @@ label {
     display: inline-block;
     margin-bottom: .5rem;
 }
+

@@ -25,6 +25,42 @@ namespace WebApplication1
             }
         }
 
+        // This method permits to create a dynamic's table
+        private void createTable(String consulting)
+        {
+
+            using (SqlConnection sqlCon = new SqlConnection(connectionString))
+            {
+                sqlCon.Open();
+                SqlDataAdapter sqlDa = new SqlDataAdapter(consulting, sqlCon);
+                DataTable dtbl = new DataTable();
+                sqlDa.Fill(dtbl);
+                data.DataSource = dtbl;
+                data.DataBind();
+
+                BoundField boundField = new BoundField();
+                //iterate through the columns of the datatable and add them to the gridview
+                foreach (DataColumn col in dtbl.Columns)
+                {
+                    //initialize the bound field
+                    boundField = new BoundField();
+
+                    //set the DataField.
+                    boundField.DataField = col.ColumnName;
+
+                    //set the HeaderText
+                    boundField.HeaderText = col.ColumnName;
+
+                    //Add the field to the GridView columns.
+                    data.Columns.Add(boundField);
+
+                }
+                //bind the gridview the DataSource
+                data.DataSource = dtbl;
+                data.DataBind();
+            }
+        }
+
         protected void updateRegister(object sender, EventArgs e)
         {
             int idClient = Int32.Parse(String.Format("{0}", Request.Form["ID_EMPLOYMENT"]));
